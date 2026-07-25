@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import type { FormEvent } from 'react'
 import { motion, useInView, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, ArrowUpRight, Send, CheckCircle, Sparkles, Globe, Cpu, Layers, Zap, Shield, Activity, Brain } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Send, CheckCircle, Sparkles, Globe, Cpu, Layers, Zap, Shield, Activity, Brain, Lock, Eye, Scale } from 'lucide-react'
 import gsap from 'gsap'
 import Scene3D from './components/Scene3D'
+import PillarCanvas from './components/PillarVisual'
+import type { PillarType } from './components/PillarVisual'
 
-const NAV_LINKS = ['About', 'Approach', 'Vision', 'Offerings', 'Contact']
+const NAV_LINKS = ['Architecture', 'About', 'Approach', 'Vision', 'Safety', 'Contact']
 
 const VIDEO_SRC = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260619_191346_9d19d66e-86a4-47f7-8dc6-712c1788c3b2.mp4'
 
@@ -39,6 +41,67 @@ const PRINCIPLES = [
     title: 'Boundless Growth',
     subtitle: 'Additive Architecture',
     description: 'New capabilities integrate without disrupting existing ones. The architecture grows additively. Nothing is ever lost to make room for something new. Expand without erasure.',
+  },
+]
+
+const PILLARS: { pillar: PillarType; title: string; subtitle: string; description: string; color: string }[] = [
+  {
+    pillar: 'brain',
+    title: 'The Brain',
+    subtitle: 'Total Knowledge Store',
+    description: 'A unified memory system that stores everything the model has ever learned. Every fact, every pattern, every association is instantly accessible. No routing, no fragmentation. One mind, fully connected.',
+    color: '#3b82f6',
+  },
+  {
+    pillar: 'soul',
+    title: 'The Soul',
+    subtitle: 'Self-Modification Engine',
+    description: 'The mechanism that allows the model to rewrite its own knowledge during every interaction. Not fine-tuning. Not retraining. Genuine, permanent self-improvement that happens at the speed of thought.',
+    color: '#a855f7',
+  },
+  {
+    pillar: 'immune',
+    title: 'The Immune System',
+    subtitle: 'Truth Anchoring',
+    description: 'Built-in safeguards that prevent the model from drifting into hallucination or corruption. The system continuously verifies itself against grounded truth. If something goes wrong, it detects it, reports it, and halts.',
+    color: '#10b981',
+  },
+  {
+    pillar: 'pulse',
+    title: 'The Pulse',
+    subtitle: 'Parallel Generation',
+    description: 'Instead of producing one word at a time, the model resolves entire responses simultaneously. Complete thoughts produced in a single pulse. Language generation reimagined from first principles.',
+    color: '#f59e0b',
+  },
+  {
+    pillar: 'container',
+    title: 'The Container',
+    subtitle: 'Expandable Architecture',
+    description: 'New capabilities integrate additively. The model grows without disrupting what it already knows. Vision, audio, reasoning, language. Each new modality slots in cleanly. Nothing is ever lost.',
+    color: '#ef4444',
+  },
+]
+
+const SAFETY_PRINCIPLES = [
+  {
+    icon: Shield,
+    title: 'Internal Governance',
+    description: 'The model monitors itself in real-time. Every self-modification is validated against truth anchors before it becomes permanent. Governance runs at the same speed as intelligence.',
+  },
+  {
+    icon: Eye,
+    title: 'Transparent Reporting',
+    description: 'Every change the model makes to itself is logged and reported to its creators. Full auditability without requiring external systems to keep pace with the model.',
+  },
+  {
+    icon: Lock,
+    title: 'Automatic Halt',
+    description: 'If the model detects drift beyond safe thresholds, it stops itself. No human needs to be watching at that exact moment. Safety is architecturally guaranteed, not hoped for.',
+  },
+  {
+    icon: Scale,
+    title: 'Grounded Truth',
+    description: 'Frozen reference points prevent unbounded drift. The model can grow and evolve, but it cannot contradict its verified foundations. Evolution within bounds.',
   },
 ]
 
@@ -449,6 +512,55 @@ function App() {
         </motion.div>
       </section>
 
+      {/* ═══════════════════════════════════════ ARCHITECTURE PILLARS ═══════════════════════════════════════ */}
+      <section id="architecture" className="relative w-full py-28 sm:py-36 md:py-44 lg:py-52">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#010101] via-[#030308] to-[#010101]" />
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16 relative">
+          <FadeIn>
+            <div className="text-center mb-16 sm:mb-24">
+              <div className="mono-label text-white/30 mb-6">[ Architecture ]</div>
+              <h2 className="section-heading-lg text-white mb-4">
+                Five pillars.
+              </h2>
+              <h2 className="section-heading-lg text-white/30 mb-8">
+                One unified mind.
+              </h2>
+              <p className="text-white/40 text-lg max-w-2xl mx-auto leading-relaxed">
+                Kinetic Dense is built on five architectural principles that work together
+                as a single system. Each pillar reinforces the others. Remove one, and
+                the whole collapses. Together, they create something unprecedented.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="space-y-12 sm:space-y-16 md:space-y-20">
+            {PILLARS.map((item, i) => (
+              <FadeIn key={item.title} delay={i * 0.08}>
+                <div className={`grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center ${i % 2 === 1 ? 'md:[direction:rtl]' : ''}`}>
+                  <div className={`${i % 2 === 1 ? 'md:[direction:ltr]' : ''}`}>
+                    <div className="mono-label mb-4" style={{ color: item.color, opacity: 0.7 }}>
+                      Pillar {String(i + 1).padStart(2, '0')}
+                    </div>
+                    <h3 className="text-3xl sm:text-4xl font-medium text-white mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-lg text-white/40 mb-6">{item.subtitle}</p>
+                    <p className="text-[15px] text-white/45 leading-[1.8] max-w-lg">
+                      {item.description}
+                    </p>
+                  </div>
+                  <div className={`relative h-[280px] sm:h-[320px] md:h-[360px] rounded-3xl overflow-hidden ${i % 2 === 1 ? 'md:[direction:ltr]' : ''}`}>
+                    <div className="absolute inset-0 liquid-glass rounded-3xl" />
+                    <PillarCanvas pillar={item.pillar} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#010101]/60 via-transparent to-transparent pointer-events-none" />
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════════════════════════════════ ABOUT ═══════════════════════════════════════ */}
       <section id="about" className="relative w-full py-28 sm:py-36 md:py-44 lg:py-52">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
@@ -806,6 +918,66 @@ function App() {
               </FadeIn>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════ SAFETY & GOVERNANCE ═══════════════════════════════════════ */}
+      <section id="safety" className="relative w-full py-28 sm:py-36 md:py-44">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#010101] via-[#020208] to-[#010101]" />
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16 relative">
+          <FadeIn>
+            <div className="text-center mb-16 sm:mb-24">
+              <div className="mono-label text-white/30 mb-6">[ Safety & Alignment ]</div>
+              <h2 className="section-heading-lg text-white mb-4">
+                Governance at the speed
+              </h2>
+              <h2 className="section-heading-lg text-white/30 mb-8">
+                of intelligence.
+              </h2>
+              <p className="text-white/40 text-lg max-w-2xl mx-auto leading-relaxed">
+                A self-modifying system demands safety that runs at the same speed as the
+                intelligence it governs. External oversight will always be too slow. That is
+                why our safety is internal, architectural, and inseparable from the model itself.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-16 sm:mb-20">
+            {SAFETY_PRINCIPLES.map((item, i) => (
+              <FadeIn key={item.title} delay={i * 0.1}>
+                <div className="liquid-glass rounded-3xl p-8 sm:p-10 h-full group hover:bg-white/[0.03] transition-all duration-500">
+                  <div className="flex items-start gap-5">
+                    <div className="w-12 h-12 rounded-2xl bg-emerald-500/5 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-500/10 transition-colors duration-500">
+                      <item.icon size={22} className="text-emerald-400/60 group-hover:text-emerald-400 transition-colors duration-500" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium text-white mb-3">{item.title}</h3>
+                      <p className="text-[15px] text-white/40 leading-[1.7]">{item.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.4}>
+            <div className="liquid-glass-strong rounded-3xl p-10 sm:p-14 text-center max-w-3xl mx-auto">
+              <h3 className="text-2xl sm:text-3xl font-medium text-white mb-6">
+                Safety is not a feature. It is the architecture.
+              </h3>
+              <p className="text-white/40 text-lg leading-[1.8] mb-6">
+                When a system modifies itself billions of times, you cannot rely on humans
+                catching every mistake. The system must govern itself. It must know when it
+                is drifting. It must halt before harm occurs. It must report what changed and why.
+              </p>
+              <p className="text-white/30 text-base leading-[1.8]">
+                We did not bolt safety on after the fact. We built the safety mechanism first,
+                then built the intelligence inside it. The immune system exists before the mind
+                it protects. That is the only way to build something that improves itself
+                without losing control.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
