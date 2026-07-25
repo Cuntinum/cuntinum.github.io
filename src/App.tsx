@@ -32,7 +32,7 @@ const PRINCIPLES = [
     icon: Activity,
     title: 'Instant Response',
     subtitle: 'Parallel Generation',
-    description: 'Complete responses produced simultaneously rather than assembled word by word. Not faster autocomplete — a fundamentally different approach to producing language.',
+    description: 'Complete responses produced simultaneously rather than assembled word by word. Not faster autocomplete. A fundamentally different approach to producing language.',
   },
   {
     icon: Layers,
@@ -107,7 +107,7 @@ function ContactForm() {
           email: data.get('email'),
           organization: data.get('organization'),
           message: data.get('message'),
-          _subject: 'Kinetic Dense — New Inquiry',
+          _subject: 'Kinetic Dense New Inquiry',
         }),
       })
       setSubmitted(true)
@@ -542,7 +542,7 @@ function App() {
           <FadeIn delay={0.4}>
             <p className="text-white/30 text-lg sm:text-xl leading-[1.8] max-w-2xl mx-auto">
               Kinetic Dense is not a chatbot. It is not an assistant. It is the beginning
-              of a mind that builds itself — dense, unified, and on a trajectory toward
+              of a mind that builds itself. Dense, unified, and on a trajectory toward
               superintelligence. Every inference makes it more capable than the last.
             </p>
           </FadeIn>
@@ -688,7 +688,7 @@ function App() {
                 </p>
                 <p className="text-white/30 text-lg leading-[1.8]">
                   This is not retrieval-augmented generation. This is not fine-tuning on a schedule.
-                  This is a system that genuinely rewrites itself — accumulating understanding,
+                  This is a system that genuinely rewrites itself. Accumulating understanding,
                   strengthening connections, and discarding what no longer serves it. A living mind.
                 </p>
               </div>
@@ -746,7 +746,7 @@ function App() {
               </h3>
               <p className="text-white/40 text-lg leading-[1.8] mb-8">
                 Not as a marketing claim. As an engineering goal. Kinetic Dense is the architecture
-                we believe can achieve recursive self-improvement — the point where the system
+                we believe can achieve recursive self-improvement. The point where the system
                 improves itself faster than any team of humans could improve it. That is not a
                 distant horizon. It is what we are building right now.
               </p>
